@@ -1,0 +1,226 @@
+/* Bespoke Cream & Burgundy Flatpickr Theme (Strict Brand Identity) */
+.flatpickr-calendar {
+    background: rgba(248, 246, 241, 0.98) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 2px solid #D4AF37 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 15px 35px rgba(107, 30, 45, 0.22), 0 0 20px rgba(212, 175, 55, 0.2) !important;
+    font-family: inherit !important;
+    padding: 12px !important;
+    direction: rtl !important;
+}
+.flatpickr-day {
+    color: #6B1E2D !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+}
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
+    background: linear-gradient(135deg, #6B1E2D, #4A1520) !important;
+    border-color: #6B1E2D !important;
+    color: #FFFFFF !important;
+    font-weight: 900 !important;
+    box-shadow: 0 4px 12px rgba(107, 30, 45, 0.4) !important;
+}
+.flatpickr-day:hover:not(.selected) {
+    background: rgba(107, 30, 45, 0.12) !important;
+    color: #6B1E2D !important;
+    border-color: transparent !important;
+}
+.flatpickr-months .flatpickr-month,
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+    color: #6B1E2D !important;
+    font-weight: 800 !important;
+    outline: none !important;
+}
+span.flatpickr-weekday {
+    color: #B38A28 !important;
+    font-weight: 800 !important;
+}
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+    fill: #6B1E2D !important;
+}
+
+/* Style for Gender Switcher Sliding Animation */
+.gender-toggle-container {
+    user-select: none;
+}
+.gender-slider {
+    top: 4px; 
+    bottom: 4px;
+    right: 4px; 
+    left: 50%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+.gender-label {
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#gender-girl:checked ~ .gender-slider {
+    right: 50%; 
+    left: 4px;
+}
+#gender-boy:checked ~ label[for="gender-boy"],
+#gender-girl:checked ~ label[for="gender-girl"] {
+    color: var(--brand-primary) !important;
+}
+
+/* Wizard Plan Cards */
+.plan-wizard-card {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #fff;
+}
+.plan-wizard-card:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+.plan-wizard-card.active {
+    border-color: #D4AF37;
+    background: rgba(212, 175, 55, 0.18);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Bespoke Cream & Burgundy Subject Cards (60% Off-White/White, 30% Nabiti, 10% Gold) */
+.subject-wizard-card {
+    background: #FFFFFF;
+    border: 1.5px solid rgba(107, 30, 45, 0.18);
+    border-radius: 14px;
+    padding: 0.8rem 1rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #2B0C12;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.subject-wizard-card:hover:not(.locked) {
+    background: #F8F6F1;
+    border-color: #6B1E2D;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(107, 30, 45, 0.12);
+}
+.subject-wizard-card.selected {
+    background: #F8F6F1;
+    border: 2px solid #6B1E2D;
+    border-right: 5px solid #D4AF37;
+    box-shadow: 0 4px 16px rgba(107, 30, 45, 0.15);
+}
+.subject-wizard-card.locked {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: #F0EFEA;
+    border-color: rgba(107, 30, 45, 0.1);
+}
+
+/* Custom Sleek Checkbox inside Cards */
+.custom-luxury-chk {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid rgba(107, 30, 45, 0.35);
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: all 0.2s ease;
+}
+.subject-wizard-card.selected .custom-luxury-chk {
+    background: #6B1E2D;
+    border-color: #6B1E2D;
+    color: #FFFFFF;
+}
+
+/* Luxury Gold Button (10% Accent) */
+.btn-gold-luxury {
+    background: linear-gradient(135deg, #E5C158 0%, #D4AF37 100%);
+    color: #1a1a1a !important;
+    font-weight: 800;
+    border: none;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    transition: all 0.3s ease;
+}
+.btn-gold-luxury:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(212, 175, 55, 0.55);
+    background: linear-gradient(135deg, #eed074 0%, #c49c2a 100%);
+}
+
+/* Clean Custom Scrollbar for Subject Grid */
+.subjects-grid-scroll {
+    max-height: 260px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+.subjects-grid-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.subjects-grid-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+.subjects-grid-scroll::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.45);
+    border-radius: 10px;
+}
+
+/* Bespoke Luxury DOB Bar */
+.dob-glass-bar {
+    background: rgba(18, 18, 24, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    border-radius: 50rem;
+    padding: 0.35rem 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.dob-select-clean {
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem;
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+}
+.dob-select-clean:focus {
+    color: #D4AF37 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.dob-select-clean option {
+    background: #25121b;
+    color: #fff;
+    font-weight: 700;
+}
+.dob-separator {
+    color: #D4AF37;
+    font-weight: 900;
+    opacity: 0.8;
+    user-select: none;
+}
+.age-glass-pill {
+    background: rgba(18, 18, 24, 0.55);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50rem;
+    padding: 0.35rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,274 @@
+/* E:\work\CH\School\WEB\system\assets\css\style.css */
+/* Avant-Garde UI Overrides - Strict Brand Identity */
+
+:root {
+    /* Brand Colors */
+    --brand-primary: #6B1E2D;
+    --brand-primary-rgb: 107, 30, 45;
+    
+    --brand-primary-dark: #4A1520;
+    
+    --brand-gold: #D4AF37;
+    --brand-gold-rgb: 212, 175, 55;
+    
+    --brand-gold-dark: #B38A28;
+    
+    --brand-white: #FFFFFF;
+    --brand-offwhite: #F8F6F1;
+
+    /* Bootstrap Overrides */
+    --bs-primary: var(--brand-primary);
+    --bs-primary-rgb: var(--brand-primary-rgb);
+    
+    --bs-warning: var(--brand-gold);
+    --bs-warning-rgb: var(--brand-gold-rgb);
+    
+    --bs-light: var(--brand-offwhite);
+    
+    --bs-body-bg: var(--brand-offwhite);
+    --bs-body-color: var(--brand-primary-dark);
+}
+
+body {
+    font-family: 'Inter', 'Cairo', sans-serif;
+    color: var(--brand-dark);
+    background-color: var(--brand-white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Bootstrap Color Overrides */
+.text-primary { color: var(--brand-primary) !important; }
+.bg-primary { background-color: var(--brand-primary) !important; }
+.btn-primary { 
+    background-color: var(--brand-primary) !important; 
+    border-color: var(--brand-primary) !important; 
+    color: var(--brand-white) !important;
+}
+.btn-primary:hover {
+    background-color: var(--brand-primary-dark) !important;
+    border-color: var(--brand-primary-dark) !important;
+}
+
+.text-warning { color: var(--brand-gold) !important; }
+.bg-warning { background-color: var(--brand-gold) !important; }
+.btn-warning { 
+    background-color: var(--brand-gold) !important; 
+    border-color: var(--brand-gold) !important; 
+    color: var(--brand-white) !important;
+}
+.btn-warning:hover {
+    background-color: var(--brand-gold-dark) !important;
+    border-color: var(--brand-gold-dark) !important;
+}
+
+.text-light { color: var(--brand-offwhite) !important; }
+.bg-light { background-color: var(--brand-offwhite) !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--brand-offwhite);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--brand-gold);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-gold-dark);
+}
+
+/* Glassmorphism & Custom Classes */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(107, 30, 45, 0.1);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(107, 30, 45, 0.1);
+    border-radius: 12px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4);
+    border-color: rgba(212, 175, 55, 0.5);
+}
+
+/* Hover Utils */
+.hover-primary:hover { color: var(--brand-primary) !important; }
+.hover-warning:hover { color: var(--brand-gold) !important; }
+.hover-danger:hover { color: #dc3545 !important; }
+.hover-bg-darker:hover { background-color: var(--brand-primary-dark) !important; }
+.hover-border-warning:hover { border-color: var(--brand-gold) !important; }
+
+.hover-shadow:hover {
+    box-shadow: 0 10px 30px rgba(107, 30, 45, 0.15) !important;
+}
+
+.group-hover-text-primary { transition: color 0.3s; }
+.group:hover .group-hover-text-primary { color: var(--brand-primary) !important; }
+
+.group-hover-text-warning { transition: color 0.3s; }
+.group:hover .group-hover-text-warning { color: var(--brand-gold) !important; }
+
+.group-hover-bg-warning { transition: background-color 0.3s; }
+.group:hover .group-hover-bg-warning { background-color: var(--brand-gold) !important; }
+
+/* Animations */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dashboard Layout Overrides */
+.sidebar {
+    background: var(--brand-primary);
+    color: var(--brand-white);
+    min-height: 100vh;
+}
+
+.nav-link-custom {
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    transition: all 0.3s;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--brand-gold);
+}
+
+/* Focus Rings */
+.focus-ring-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(107, 30, 45, 0.25) !important;
+    border-color: var(--brand-primary) !important;
+}
+
+.focus-ring-warning:focus {
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25) !important;
+    border-color: var(--brand-gold) !important;
+}
+
+/* Loading Spinner */
+.spinner-pulse {
+    width: 40px;
+    height: 40px;
+    background-color: var(--brand-gold);
+    border-radius: 100%;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+.pulse-glow {
+    animation: pulseGlow 2s infinite;
+}
+
+/* 2026 Avant-Garde Skeleton Loaders */
+.skeleton-box {
+    background: linear-gradient(90deg, rgba(230, 230, 230, 0.5) 25%, rgba(245, 245, 245, 0.8) 50%, rgba(230, 230, 230, 0.5) 75%);
+    background-size: 400% 100%;
+    animation: skeletonLoading 1.5s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+@keyframes skeletonLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Skeleton Dashboard Layout */
+.skeleton-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    width: 100%;
+    height: 100%;
+}
+.skeleton-dashboard .s-header { height: 100px; border-radius: 20px; }
+.skeleton-dashboard .s-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.skeleton-dashboard .s-card { height: 150px; flex: 1; min-width: 200px; border-radius: 20px; }
+
+@keyframes sk-scaleout {
+    0% { transform: scale(0); }
+    100% {
+        transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+/* Avant-Garde SweetAlert2 Custom Classes */
+.ag-swal-popup {
+    border-radius: 28px !important;
+    padding: 2.5rem 1.5rem !important;
+    border: 1px solid rgba(123, 31, 63, 0.1) !important;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12) !important;
+    font-family: 'Cairo', 'Inter', sans-serif !important;
+    backdrop-filter: blur(12px) !important;
+}
+.ag-swal-title {
+    font-weight: 900 !important;
+    color: var(--brand-primary-dark) !important;
+    font-size: 1.8rem !important;
+    margin-bottom: 0.5rem !important;
+}
+.ag-swal-html {
+    font-weight: 600 !important;
+    color: #6c757d !important;
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+}
+.ag-swal-confirm, .ag-swal-cancel {
+    border-radius: 50px !important;
+    padding: 0.75rem 2.5rem !important;
+    font-weight: 800 !important;
+    border: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-family: 'Cairo', sans-serif !important;
+}
+.ag-swal-confirm {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+.ag-swal-confirm:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2) !important;
+}
+.ag-swal-cancel {
+    background: #f8f9fa !important;
+    color: #6c757d !important;
+    border: 1px solid #dee2e6 !important;
+}
+.ag-swal-cancel:hover {
+    background: #e9ecef !important;
+    transform: translateY(-2px) !important;
+}
+.ag-swal-input {
+    border-radius: 12px !important;
+    border: 2px solid rgba(123, 31, 63, 0.1) !important;
+    padding: 0.75rem 1rem !important;
+    font-weight: 700 !important;
+    color: var(--brand-primary-dark) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+}
+.ag-swal-input:focus {
+    border-color: var(--brand-gold) !important;
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25) !important;
+}
