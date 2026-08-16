@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <?php 
+    if (session_status() === PHP_SESSION_NONE) session_start();
+    require_once __DIR__ . '/../api/Security.php'; 
+    ?>
+    <meta name="csrf-token" content="<?= Security::generateCSRFToken() ?>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مدرسة حبة خردل | المنصة التعليمية</title>
