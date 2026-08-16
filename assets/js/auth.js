@@ -21,6 +21,59 @@ function switchAuthMode(mode, e) {
 }
 window.switchAuthMode = switchAuthMode;
 
+async function handleAuth(event, type) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    if (submitBtn) submitBtn.classList.add('is-loading', 'disabled');
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Add multiple subjects as array if exists
+    const subjectCheckboxes = form.querySelectorAll('input[name="subject_ids[]"]:checked');
+    if (subjectCheckboxes.length > 0) {
+        data.subject_ids = Array.from(subjectCheckboxes).map(cb => cb.value);
+    }
+
+    try {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+        const res = await fetch(`/api/auth/${type}`, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await res.json();
+        
+        if (res.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'تم بنجاح',
+                text: 'جاري تحويلك...',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.reload();
+            });
+        } else {
+            throw new Error(result.error || 'حدث خطأ غير معروف');
+        }
+    } catch (err) {
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: err.message
+        });
+    } finally {
+        if (submitBtn) submitBtn.classList.remove('is-loading', 'disabled');
+    }
+}
+
 async function localApiCall(endpoint, method, data) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
     const res = await fetch(`/api/${endpoint}`, {

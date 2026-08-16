@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (!isset($pdo)) {
     require_once __DIR__ . '/../../../api/db.php';
 }
@@ -238,7 +238,7 @@ function deleteRecording() {
     document.getElementById('audioPlayback').src = '';
 }
 
-function submitHomeworkForm(e) {
+async function submitHomeworkForm(e) {
     e.preventDefault();
     const form = e.target;
     const btn = document.getElementById('submitBtn');
@@ -256,53 +256,27 @@ function submitHomeworkForm(e) {
         return;
     }
 
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> جاري الإرسال...';
-
-    const formData = new FormData(form);
+    if(btn) btn.classList.add('is-loading', 'disabled');
     
-    // Append the recorded audio if it exists
+    const formData = new FormData(form);
     if (recordedBlob) {
         formData.append('file', recordedBlob, 'recitation.webm');
     }
-
-    fetch('/api/homeworks/submit', {
-        method: 'POST',
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
+    
+    try {
+        const res = await fetch('/api/homeworks/submit', { method: 'POST', body: formData });
+        const data = await res.json();
         if (data.success) {
-            Swal.fire({
-                icon: 'success',
-                title: 'عمل رائع!',
-                text: 'تم تسليم الواجب بنجاح!',
-                confirmButtonText: 'ممتاز',
-                timer: 3000
-            }).then(() => {
+            Swal.fire({ icon: 'success', title: 'عمل رائع!', text: 'تم التسليم بنجاح!', confirmButtonText: 'ممتاز', timer: 3000 }).then(() => {
                 switchTab('homework_submit&id=<?= $homework['id'] ?>');
             });
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'خطأ',
-                text: data.error || 'حدث خطأ أثناء التسليم',
-                confirmButtonText: 'حسناً'
-            });
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> إرسال الواجب';
+            Swal.fire({ icon: 'error', title: 'خطأ', text: data.error || 'حدث خطأ أثناء التسليم', confirmButtonText: 'حسناً' });
         }
-    })
-    .catch(err => {
-        console.error(err);
-        Swal.fire({
-            icon: 'error',
-            title: 'خطأ بالاتصال',
-            text: 'حدث خطأ في الاتصال بالخادم',
-            confirmButtonText: 'حسناً'
-        });
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> إرسال الواجب';
-    });
+    } catch (err) {
+        Swal.fire({ icon: 'error', title: 'خطأ بالاتصال', text: 'حدث خطأ في الاتصال بالخادم', confirmButtonText: 'حسناً' });
+    } finally {
+        if(btn) btn.classList.remove('is-loading', 'disabled');
+    }
 }
 </script>

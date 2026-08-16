@@ -505,6 +505,9 @@ async function editStudent(id) {
 async function saveStudent(e) {
     e.preventDefault();
     const form = document.getElementById('studentForm');
+    const submitBtn = document.querySelector('button[onclick="document.getElementById(\'studentForm\').requestSubmit()"]');
+    if (submitBtn) submitBtn.classList.add('is-loading', 'disabled');
+
     const formData = new FormData(form);
     
     const checkboxes = document.querySelectorAll('.subject-checkbox:checked');
@@ -532,10 +535,13 @@ async function saveStudent(e) {
                 location.reload();
             });
         } else {
-            Swal.fire('خطأ', result.error || "حدث خطأ أثناء الحفظ", 'error');
+            Swal.fire('خطأ', result.error || 'حدث خطأ أثناء الحفظ', 'error');
         }
-    } catch (err) {
-        Swal.fire('خطأ', "حدث خطأ في الاتصال بالخادم", 'error');
+    } catch (error) {
+        Swal.fire('خطأ', 'تعذر الاتصال بالخادم', 'error');
+    } finally {
+        const submitBtn = document.querySelector('button[onclick="document.getElementById(\'studentForm\').requestSubmit()"]');
+        if (submitBtn) submitBtn.classList.remove('is-loading', 'disabled');
     }
 }
 

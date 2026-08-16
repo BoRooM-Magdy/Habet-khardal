@@ -347,6 +347,13 @@ function openStageModal() {
 
 async function saveStage(e) {
     e.preventDefault();
+    const form = document.getElementById('addStageForm');
+    const submitBtn = document.querySelector('button[onclick="document.getElementById(\'addStageForm\').requestSubmit()"]');
+    if (submitBtn) {
+        submitBtn.classList.add('disabled');
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> جارٍ الحفظ...';
+    }
+
     const name = document.getElementById('stageName').value;
     const desc = document.getElementById('stageDesc').value;
 

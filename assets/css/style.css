@@ -272,3 +272,51 @@ body {
     border-color: var(--brand-gold) !important;
     box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25) !important;
 }
+
+/* =========================================
+   Askadosh PASS 2: Button & Interactive States
+   ========================================= */
+
+/* Global Button Transitions (Kinetic UI) */
+.btn, button, a.btn, .hover-scale, .transition {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* Button Active/Press State */
+.btn:active, button:active, .hover-scale:active {
+    transform: scale(0.96) !important;
+}
+
+/* Disabled & Loading States */
+.btn:disabled, button:disabled, .btn.is-loading, button.is-loading {
+    opacity: 0.65 !important;
+    pointer-events: none !important;
+    transform: none !important;
+    position: relative;
+    color: transparent !important; /* Hide text to show spinner */
+}
+
+/* Loading Spinner Element */
+.btn.is-loading::after, button.is-loading::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 0.6em);
+    left: calc(50% - 0.6em);
+    width: 1.2em;
+    height: 1.2em;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: btn-spin 0.6s linear infinite;
+}
+
+/* For light buttons, use dark spinner */
+.btn-light.is-loading::after, .btn-outline-primary.is-loading::after, .btn-white.is-loading::after {
+    border: 2px solid rgba(0,0,0,0.1);
+    border-top-color: var(--brand-primary);
+}
+
+@keyframes btn-spin {
+    to { transform: rotate(360deg); }
+}
+

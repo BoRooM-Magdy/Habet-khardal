@@ -184,21 +184,26 @@ require __DIR__ . '/../components/header.php';
 let currentTab = '<?= $tab ?>';
 
 // Define apiCall if not loaded yet
-async function apiCall(endpoint, method = 'GET', data = null) {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-    const options = {
-        method: method,
-        headers: { 
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken
-        }
-    };
-    if (data && method !== 'GET') options.body = JSON.stringify(data);
-    
-    const res = await fetch(`api/${endpoint}`, options);
-    const result = await res.json();
-    if (!res.ok) throw new Error(result.error || 'حدث خطأ');
-    return result;
+async function apiCall(endpoint, method = 'GET', data = null, btnElement = null) {
+    if (btnElement) btnElement.classList.add('is-loading', 'disabled');
+    try {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+        const options = {
+            method: method,
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            }
+        };
+        if (data && method !== 'GET') options.body = JSON.stringify(data);
+        
+        const res = await fetch(`api/${endpoint}`, options);
+        const result = await res.json();
+        if (!res.ok) throw new Error(result.error || 'حدث خطأ');
+        return result;
+    } finally {
+        if (btnElement) btnElement.classList.remove('is-loading', 'disabled');
+    }
 }
 
 function toggleSidebar() {

@@ -6,7 +6,7 @@ $_GET = Security::sanitize($_GET);
 $_POST = Security::sanitize($_POST);
 $_REQUEST = Security::sanitize($_REQUEST);
 
-$host = '127.0.0.1';
+$host = 'localhost';
 $db   = 'school_platform';
 $user = 'root';
 $pass = '';
@@ -25,7 +25,7 @@ try {
     header('Content-Type: application/json', true, 500);
     echo json_encode([
         "error" => "Database connection failed",
-        "details" => "Please ensure MySQL server is running."
+        "details" => $e->getMessage()
     ]);
     exit;
 }
